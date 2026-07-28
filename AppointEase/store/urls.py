@@ -4,7 +4,7 @@ from .views import test
 
 urlpatterns = [
 
-    path("registration/", test.as_view()),
+    path("test/", test.as_view()),
 
 
 ]
