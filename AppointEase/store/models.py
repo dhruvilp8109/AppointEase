@@ -1,9 +1,18 @@
 from django.db import models
 
+from common.models import Audit
 
-class Store(models.Model):
+
+class Store(Audit):
     class Meta:
-        db_table = 'ae_test'
-    test_id = models.BigAutoField(primary_key=True)
-    test_1 = models.CharField(max_length=255, null=True, blank=True)
-    test_2 = models.CharField(max_length=255, null=True, blank=True)
+        db_table = 'ae_store'
+
+    store_id = models.BigAutoField(primary_key=True)
+    store_name = models.CharField(max_length=255, null=True, blank=True)
+    store_email = models.EmailField(null=True, blank=True)
+    store_password = models.CharField(max_length=255, null=True, blank=True)
+    store_address = models.TextField(null=True, blank=True)
+    store_contact_number = models.CharField(
+        max_length=15, null=True, blank=True)
+    store_services = models.JSONField(max_length=255, null=True, blank=True)
+    store_langauges = models.JSONField(max_length=255, null=True, blank=True)

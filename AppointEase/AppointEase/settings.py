@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+from datetime import timedelta
 import os
 from pathlib import Path
 import dj_database_url
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'store',
+    'common',
+    'security'
 ]
 
 MIDDLEWARE = [
@@ -150,3 +153,9 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
+ACCESS_TOKEN_LIFETIME = timedelta(minutes=120)
+REFRESH_TOKEN_LIFETIME = timedelta(days=300)
+JWT_ALGORITHM = "HS512"
+JWT_SECRET = "key@LoginaccEss"
