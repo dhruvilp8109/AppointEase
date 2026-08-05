@@ -3,11 +3,10 @@ import traceback
 from http.client import BAD_REQUEST
 
 from django.contrib.auth.hashers import check_password, make_password
-from django.shortcuts import render
 
-from rest_framework.views import APIView, Response
+from rest_framework.views import APIView
 
-from email_validator import validate_email, EmailNotValidError
+from email_validator import EmailNotValidError
 
 
 from security.store_authorization import create_store_authentication_token
@@ -15,7 +14,7 @@ from common.constants import INCORRECT_PASSWORD, SERIALIZER_IS_NOT_VALID, STORE_
 from common.helper import validate_password
 from store.models import Store
 from store.serializers import StoreRegistrationSerializer
-from exceptions.exception_handler import CustomAuthenticationFailed, CustomBadRequest, CustomPermissionDenied, GenericException, GenericSuccessResponse
+from exceptions.exception_handler import CustomAuthenticationFailed, CustomBadRequest, GenericException, GenericSuccessResponse
 # Create your views here.
 
 
