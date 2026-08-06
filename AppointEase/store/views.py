@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import check_password, make_password
 
 from rest_framework.views import APIView
 
-from email_validator import EmailNotValidError
+# from email_validator import EmailNotValidError, validate_email
 
 
 from security.store_authorization import create_store_authentication_token
@@ -38,6 +38,8 @@ class Registration(APIView):
             if Store.objects.filter(store_email=request.data['store_email'], is_deleted=False).exists():
                 print("hii")
                 return CustomBadRequest(message=STORE_EMAIL_ALREADY_EXISTS)
+
+            # email_validation = validate_email(request.data['store_email'])
 
             password_validation_response = validate_password(
                 request.data["store_password"])
@@ -81,8 +83,8 @@ class Login(APIView):
             token = create_store_authentication_token(store)
             return GenericSuccessResponse(token, message=STORE_REGISTERED_SUCCESSFULLY)
 
-        except EmailNotValidError as e:
-            return CustomBadRequest(message=str(e))
+        # except EmailNotValidError as e:
+        #     return CustomBadRequest(message=str(e))
 
         except Store.DoesNotExist:
             return CustomBadRequest(message=USER_NOT_FOUND)
